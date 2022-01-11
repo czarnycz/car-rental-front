@@ -1,6 +1,6 @@
 import classes from "./AppHeader.module.css";
 
-// import CarRentalIcon from '@material-ui/icons/Veh';
+import DirectionsCarIcon from '@material-ui/icons/DirectionsCar';
 import PeopleAlt from '@material-ui/icons/PeopleAlt'
 import {Link} from "react-router-dom";
 
@@ -11,7 +11,7 @@ const HEADER_BUTTONS = [
     {
         name: 'Reservation',
         href: '/reservations',
-        icon: (<PeopleAlt fontSize={"small"}/>),
+        icon: (<DirectionsCarIcon fontSize={"small"}/>),
     },
     {
         name: 'Users',

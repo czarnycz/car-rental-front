@@ -1,12 +1,12 @@
 
-import './App.module.css';
+import classes from './App.module.css';
 import {BrowserRouter as Router} from "react-router-dom";
 import AppHeader from "./components/header/AppHeader";
 import AppContent from "./components/content/AppContent";
 
 function App() {
   return (
-    <div className="App">
+    <div className={classes.App}>
      <Router>
        <AppHeader/>
        <AppContent/>

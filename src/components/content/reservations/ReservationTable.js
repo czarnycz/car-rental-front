@@ -24,10 +24,10 @@ const ReservationTable = (props) => {
                     <TableHead>
                         <TableRow>
                             <TableCell>Id</TableCell>
-                            <TableCell align="right">First Name</TableCell>
-                            <TableCell align="right">Last Name</TableCell>
-                            <TableCell align="right"/>
-                            <TableCell align="right"/>
+                            <TableCell align="right">Start Date</TableCell>
+                            <TableCell align="right">End Date</TableCell>
+                            <TableCell align="right">Car</TableCell>
+                            <TableCell align="right">User</TableCell>
                             <TableCell align="right"/>
                         </TableRow>
                     </TableHead>
