@@ -29,7 +29,7 @@ const ReservationList = () => {
     return (
         <div>
             <div className={classes.AddButtonContainer}>
-                <Link to={"/reservation/add"} className={classes.ReservationAddButton}>
+                <Link to={"/reservations/add"} className={classes.ReservationAddButton}>
                     <Button variant="outlined">Add New</Button>
                 </Link>
             </div>

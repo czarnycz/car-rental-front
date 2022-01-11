@@ -28,6 +28,9 @@ const ReservationTable = (props) => {
                             <TableCell align="right">End Date</TableCell>
                             <TableCell align="right">Car</TableCell>
                             <TableCell align="right">User</TableCell>
+                            <TableCell align="right">
+                                {/*<Button onClick={}>Edit</Button>*/}
+                            </TableCell>
                             <TableCell align="right"/>
                         </TableRow>
                     </TableHead>
