@@ -1,12 +1,12 @@
 import classes from "./ReservationList.module.css";
 import {Button, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow} from "@material-ui/core";
 import CardComponent from "../../CardComponent";
-import axios from "axios";
+import instance from  "../../../axios/axios";
 
 const ReservationTable = (props) => {
 
     const handleRemoveRecord = (row) => {
-        axios.delete("http://localhost:8080/reservations/" + row.id)
+        instance().delete("http://localhost:8080/reservations/" + row.id)
             .then((data) => {
                 console.log("Otrzymaliśmy sukces odpowiedź!");
                 props.refreshData();
@@ -43,13 +43,6 @@ const ReservationTable = (props) => {
                                     <Button onClick={() => {
                                         props.onAdd(row.id)
                                     }}>Add</Button>
-                                </TableCell>)
-                            }
-                            if (props.onRemove) {
-                                removeButton = (<TableCell align="right">
-                                    <Button onClick={() => {
-                                        props.onRemove(row.id)
-                                    }}>Remove</Button>
                                 </TableCell>)
                             }
 

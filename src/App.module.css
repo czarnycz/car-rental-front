@@ -7,6 +7,9 @@
   --content-background-color: #CBC2A9;
   --card-bg: #B2AA96;
   --card-border: #A59E8C;
+  --dark-bg: #B2AA96;
+  --white-font: #ffffff;
+  --light-bg: #D7CEB2;
 }
 
 body{

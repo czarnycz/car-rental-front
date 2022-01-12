@@ -1,15 +1,15 @@
 import {useEffect, useState} from "react";
 import classes from "./ReservationList.module.css";
 import {Link} from "react-router-dom";
-import {Button} from "@material-ui/core";
-import axios from "axios";
-import ReservationTable from "./ReservationTable";
+import {Button, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow} from "@material-ui/core";
+import instance from  "../../../axios/axios";
+import CardComponent from "../../CardComponent";
 
 const ReservationList = () => {
     const [rows, setRows] = useState([]);
 
     const pullRecordsFromDatabaseServer = () => {
-        axios.get("http://localhost:8080/reservations/")
+        instance().get("/reservations/")
             .then((data) => {
 
                 console.log("Otrzymaliśmy sukces odpowiedź!")
@@ -33,7 +33,49 @@ const ReservationList = () => {
                     <Button variant="outlined">Add New</Button>
                 </Link>
             </div>
-            <ReservationTable rows={rows} refreshData={pullRecordsFromDatabaseServer}/>
+            <CardComponent title={'Reservation List'}>
+                <div className={classes.TableContainer}>
+                    <TableContainer component={Paper}>
+                        <Table sx={{minWidth: 650}} aria-label="simple table">
+                            <TableHead>
+                                <TableRow>
+                                    <TableCell>Id</TableCell>
+                                    <TableCell align="right">Start Date</TableCell>
+                                    <TableCell align="right">End Date</TableCell>
+                                    <TableCell align="right">User</TableCell>
+                                    <TableCell align="right">Car</TableCell>
+
+                                    <TableCell align="right">Edit</TableCell>
+                                    <TableCell align="right">Details</TableCell>
+                                </TableRow>
+                            </TableHead>
+                            <TableBody>
+                                {rows.map((row) => (
+                                    <TableRow
+                                        key={row.name}
+                                        sx={{'&:last-child td, &:last-child th': {border: 0}}}
+                                    >
+                                        <TableCell component="th" scope="row">
+                                            {row.id}
+                                        </TableCell>
+                                        <TableCell align="right">{row.dateOfReservation}</TableCell>
+                                        <TableCell align="right">{row.startOfReservation}</TableCell>
+                                        <TableCell align="right">{row.endOfReservation}</TableCell>
+                                        <TableCell align="right">{row.price}</TableCell>
+                                        <TableCell align="right">{row.cancelled}</TableCell>
+                                        <TableCell align="right">Edit</TableCell>
+                                        <TableCell align="right">
+                                            <Link to={`/reservations/details/${row.id}`} className={classes.ReservationAddButton}>
+                                                <Button>Details</Button>
+                                            </Link>
+                                        </TableCell>
+                                    </TableRow>
+                                ))}
+                            </TableBody>
+                        </Table>
+                    </TableContainer>
+                </div>
+            </CardComponent>
         </div>
     )
 }

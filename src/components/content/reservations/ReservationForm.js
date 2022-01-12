@@ -3,9 +3,9 @@ import DatePicker from 'react-datepicker';
 import "react-datepicker/dist/react-datepicker.css";
 import CardComponent from "../../CardComponent";
 import DeleteIcon from '@material-ui/icons/Delete';
-import {Button, Grid, TextField} from "@material-ui/core";
+import {Button, Grid} from "@material-ui/core";
 import {useState} from "react";
-import axios from "axios";
+import instance from  "../../../axios/axios";
 import {Link} from "react-router-dom";
 
 const getDateStringFromDateObject = (dateObject) => {
@@ -30,9 +30,6 @@ const ReservationForm = () => {
     const [startOfReservation, setStartOfReservation] = useState(new Date());
     const [endOfReservation, setEndOfReservation] = useState(new Date());
 
-    const handleChangeForm =  name => event => {
-        setEditedReservation({...editedReservation, [name]: event.target.value});
-    };
     const handleDateChangeForm = name => date => {
         const finalDate = getDateStringFromDateObject(date)
         setStartOfReservation(date)
@@ -52,7 +49,7 @@ const ReservationForm = () => {
 
         console.log("Wysyłamy:" + JSON.stringify(editedReservation))
 
-        axios.post('http://localhost:8080/reservations',editedReservation)
+        instance().post('/reservations',editedReservation)
             .then((data)=>{
                 console.log("Odpowiedz sukces: " + JSON.stringify(data));
             })
@@ -76,12 +73,6 @@ const ReservationForm = () => {
                                     onChange={handleDateChangeForm1("endOfReservation")}>
                         </DatePicker>
                     </Grid>
-                    {/*<Grid item xs={12}>*/}
-                    {/*    <TextField value={editedReservation.price}*/}
-                    {/*               onChange={handleChangeForm("price")}*/}
-                    {/*               className={classes.FormStretchField}*/}
-                    {/*               label={'Price'} size={'small'} variant="filled"/>*/}
-                    {/*</Grid>*/}
                     <Grid item xs={1}/>
                     <Grid container item xs={10}>
                         <Grid item xs={6}>

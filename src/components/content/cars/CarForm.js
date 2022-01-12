@@ -1,5 +1,5 @@
 import {useState} from "react";
-import axios from "axios";
+import instance from  "../../../axios/axios";
 import CardComponent from "../../CardComponent";
 import {Button, Grid, TextField} from "@material-ui/core";
 import classes from "./CarForm.module.css"
@@ -30,7 +30,7 @@ const CarForm = () => {
     const handleSubmit = () => {
         console.log("Wysyłamy:" + JSON.stringify(editedCarForm))
 
-        axios.post('http://localhost:8080/reservations',editedCarForm)
+        instance.post('/reservations',editedCarForm)
             .then((data)=>{
                 console.log("Odpowiedz sukces: " + JSON.stringify(data));
             })

@@ -1,18 +1,38 @@
 
 import classes from './App.module.css';
-import {BrowserRouter as Router} from "react-router-dom";
-import AppHeader from "./components/header/AppHeader";
-import AppContent from "./components/content/AppContent";
+import React, {Component} from 'react';
+import {withRouter} from 'react-router-dom';
+import {connect} from 'react-redux';
+import * as actions from './store/actions/index'
+import ContentLoggedIn from "./components/auth/ContentLoggedIn";
+import ContentLoggedOut from "./components/auth/ContentLoggedOut";
 
-function App() {
-  return (
-    <div className={classes.App}>
-     <Router>
-       <AppHeader/>
-       <AppContent/>
-     </Router>
-    </div>
-  );
+class App extends Component {
+    componentDidMount() {
+        this.props.checkAuthState();
+    }
+
+    render() {
+        return (
+            <div className={classes.App}>
+                {this.props.isAuthenticated ? (<ContentLoggedIn/>) : (<ContentLoggedOut/>)}
+            </div>
+        );
+    }
 }
 
-export default App;
+const mapStateToProps = state => {
+        return {
+            isAuthenticated: state.auth.token !== null
+        };
+    }
+;
+
+const mapDispatchToProps = dispatch => {
+        return {
+            checkAuthState: () => dispatch(actions.checkAuthState())
+        }
+    }
+;
+
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(App));

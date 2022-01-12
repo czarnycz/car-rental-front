@@ -1,17 +1,16 @@
 import classes from "./AppHeader.module.css";
+import {Link} from 'react-router-dom';
 
-import DirectionsCarIcon from '@material-ui/icons/DirectionsCar';
-import PeopleAlt from '@material-ui/icons/PeopleAlt'
-import {Link} from "react-router-dom";
 
 import logo from "../../logo.svg";
-
+import PeopleAlt from "@material-ui/icons/PeopleAlt";
+import DirectionsCarIcon from "@material-ui/icons/DirectionsCar";
 
 const HEADER_BUTTONS = [
     {
-        name: 'Reservation',
-        href: '/reservations',
-        icon: (<DirectionsCarIcon fontSize={"small"}/>),
+        name: 'Logout',
+        href: '/logout',
+        icon: (<></>),
     },
     {
         name: 'Users',
@@ -19,17 +18,21 @@ const HEADER_BUTTONS = [
         icon: (<PeopleAlt fontSize={"small"}/>),
     },
     {
+        name: 'Reservation',
+        href: '/reservations',
+        icon: (<DirectionsCarIcon fontSize={"small"}/>),
+    },
+    {
         name: 'Home',
         href: '/',
         icon: (<></>),
     },
-
 ]
-const AppHeader = () => {
+
+const AppHeaderLoggedIn = () => {
 
     const mapToHeaderButton = (buttonInfo) => {
         return (
-
             <Link key={buttonInfo.name} to={buttonInfo.href} className={classes.HeaderMenuButton}>
                 {buttonInfo.icon}
                 <div>{buttonInfo.name}</div>
@@ -51,4 +54,4 @@ const AppHeader = () => {
     );
 }
 
-export default AppHeader;
+export default AppHeaderLoggedIn;
