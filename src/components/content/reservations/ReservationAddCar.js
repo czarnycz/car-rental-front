@@ -1,5 +1,5 @@
 import {useParams} from "react-router-dom";
-import axios from "axios";
+import instance from "../../../axios/axios";
 import {useEffect, useState} from "react";
 import ReservationTable from "./ReservationTable";
 
@@ -7,13 +7,14 @@ import ReservationTable from "./ReservationTable";
 const ReservationAddCar = () => {
 
     const {reservationId} = useParams();
-    const [cars , setCars] = useState([])
+    const {carId} = useParams();
+    const [cars, setCars] = useState([])
     const [reservation, setReservation] = useState({
         'cars': [],
     })
 
     const pullCar = () => {
-        axios.get("http://localhost:8080/reservations")
+        instance.get(`/reservations/${carId}`)
             .then((data) => {
                 console.log("Otrzymaliśmy sukces odpowiedź!")
                 console.log("Rekordy: " + JSON.stringify(data.data));
@@ -25,8 +26,9 @@ const ReservationAddCar = () => {
             });
     }
 
+
     const pullReservation = () => {
-        axios.get(`http://localhost:8080/reservations/${reservationId}`)
+        instance.get(`/reservations/${reservationId}`)
             .then((data) => {
                 console.log("Otrzymaliśmy sukces odpowiedź!")
                 console.log("Rekordy: " + JSON.stringify(data.data));
@@ -40,7 +42,7 @@ const ReservationAddCar = () => {
 
     const addCarToReservation = (carId) => {
         console.log("Removing: " + carId)
-        axios.post(`http://localhost:8080/reservations/selectCar/${reservationId}/${carId}`)
+        instance.post(`/reservations/selectCar/${reservationId}/${carId}`)
             .then((data) => {
                 console.log("Otrzymaliśmy sukces odpowiedź!")
                 console.log("Rekordy: " + JSON.stringify(data.data));
@@ -55,8 +57,8 @@ const ReservationAddCar = () => {
 
 
     const isCarAdded = (carId) => {
-        for (let reservationCarId in reservation.cars){
-            if(reservation.cars[reservationCarId].id === carId){
+        for (let reservationCarId in reservation.cars) {
+            if (reservation.cars[reservationCarId].id === carId) {
                 return true;
             }
         }
@@ -71,8 +73,8 @@ const ReservationAddCar = () => {
     return (
         <div>
             <ReservationTable rows={cars}
-                            onAdd={addCarToReservation}
-                            isAdded={isCarAdded}/>
+                              onAdd={addCarToReservation}
+                              isAdded={isCarAdded}/>
         </div>
     )
 }

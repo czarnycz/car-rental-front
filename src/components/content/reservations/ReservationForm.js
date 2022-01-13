@@ -49,7 +49,7 @@ const ReservationForm = () => {
 
         console.log("Wysyłamy:" + JSON.stringify(editedReservation))
 
-        instance().post('/reservations',editedReservation)
+        instance.post('/reservations',editedReservation)
             .then((data)=>{
                 console.log("Odpowiedz sukces: " + JSON.stringify(data));
             })

@@ -1,9 +1,10 @@
 import {useState} from "react";
 import instance from  "../../../axios/axios";
 import CardComponent from "../../CardComponent";
-import {Button, Grid, TextField} from "@material-ui/core";
+import {Button, Grid, MenuItem, TextField} from "@material-ui/core";
 import classes from "./CarForm.module.css"
 import DeleteIcon from "@material-ui/icons/Delete";
+import {useParams} from "react-router-dom";
 
 
 
@@ -11,10 +12,11 @@ const EMPTY_CAR_FORM = {
     'id': null,
     'mark': null,
     'model': null,
-    'type': null,
+    'type': 'SUV',
 }
 
 const CarForm = () => {
+    const {reservationId} = useParams();
 
     const [editedCarForm, setEditedCarForm] = useState({...EMPTY_CAR_FORM});
 
@@ -30,7 +32,7 @@ const CarForm = () => {
     const handleSubmit = () => {
         console.log("Wysyłamy:" + JSON.stringify(editedCarForm))
 
-        instance.post('/reservations',editedCarForm)
+        instance.post(`reservations/selectCar/${reservationId}`,editedCarForm)
             .then((data)=>{
                 console.log("Odpowiedz sukces: " + JSON.stringify(data));
             })
@@ -60,7 +62,12 @@ const CarForm = () => {
                         <TextField value={editedCarForm.type}
                                    onChange={handleChangeForm("type")}
                                    className={classes.FormStretchField}
-                                   label={'Type'} size={'small'} variant="filled"/>
+                                   select
+                                   label='Car Body/Type' size={'small'} variant="filled">
+                            <MenuItem value={'SUV'}>SUV</MenuItem>
+                            <MenuItem value={'CABRIO'}>Cabrio</MenuItem>
+                            <MenuItem value={'SEDAN'}>Sedan</MenuItem>
+                        </TextField>
                     </Grid>
                     <Grid item xs={1}/>
                     <Grid container item xs={10}>

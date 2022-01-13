@@ -9,7 +9,7 @@ const ReservationList = () => {
     const [rows, setRows] = useState([]);
 
     const pullRecordsFromDatabaseServer = () => {
-        instance().get("/reservations/")
+        instance.get("/reservations/")
             .then((data) => {
 
                 console.log("Otrzymaliśmy sukces odpowiedź!")

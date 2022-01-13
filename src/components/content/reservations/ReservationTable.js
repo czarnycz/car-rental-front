@@ -5,16 +5,6 @@ import instance from  "../../../axios/axios";
 
 const ReservationTable = (props) => {
 
-    const handleRemoveRecord = (row) => {
-        instance().delete("http://localhost:8080/reservations/" + row.id)
-            .then((data) => {
-                console.log("Otrzymaliśmy sukces odpowiedź!");
-                props.refreshData();
-            })
-            .catch((error) => {
-                console.log("Otrzymaliśmy odpowiedź o błędzie!");
-            });
-    }
 
 
     return <CardComponent title={'Reservations List'}>
@@ -29,7 +19,7 @@ const ReservationTable = (props) => {
                             <TableCell align="right">Car</TableCell>
                             <TableCell align="right">User</TableCell>
                             <TableCell align="right">
-                                {/*<Button onClick={}>Edit</Button>*/}
+                                <Button>Edit</Button>
                             </TableCell>
                             <TableCell align="right"/>
                         </TableRow>
@@ -52,11 +42,6 @@ const ReservationTable = (props) => {
                                 <TableCell component="th" scope="row">{row.id}</TableCell>
                                 <TableCell align="right">{row.name}</TableCell>
                                 <TableCell align="right">{row.surname}</TableCell>
-                                <TableCell align="right">
-                                    {
-                                        props.hideDelete ? (<></>) : <Button onClick={() => {handleRemoveRecord(row)}}>Delete</Button>
-                                    }
-                                </TableCell>
                                 {
                                     (props.isAdded !== undefined && props.isAdded(row.id)) ? removeButton : addButton
                                 }
