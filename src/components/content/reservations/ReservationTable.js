@@ -1,7 +1,6 @@
 import classes from "./ReservationList.module.css";
 import {Button, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow} from "@material-ui/core";
 import CardComponent from "../../CardComponent";
-import instance from  "../../../axios/axios";
 
 const ReservationTable = (props) => {
 

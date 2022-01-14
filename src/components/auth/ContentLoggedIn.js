@@ -8,6 +8,7 @@ import ContentHome from "../content/home/ContentHome";
 import CarForm from "../content/cars/CarForm";
 import ReservationForm from "../content/reservations/ReservationForm";
 import ReservationAddCar from "../content/reservations/ReservationAddCar";
+import CarList from "../content/cars/CarList";
 
 const ContentLoggedIn = () => {
     return (
@@ -29,6 +30,9 @@ const ContentLoggedIn = () => {
                     </Route>
                     <Route path={'/reservations'}>
                         <ReservationList/>
+                    </Route>
+                    <Route path={'/cars'}>
+                        <CarList/>
                     </Route>
                     <Route path={'/'}>
                         <ContentHome/>

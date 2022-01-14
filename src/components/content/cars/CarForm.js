@@ -65,7 +65,7 @@ const CarForm = () => {
                                    select
                                    label='Car Body/Type' size={'small'} variant="filled">
                             <MenuItem value={'SUV'}>SUV</MenuItem>
-                            <MenuItem value={'CABRIO'}>Cabrio</MenuItem>
+                            <MenuItem value={'CABRIOLET'}>Cabriolet</MenuItem>
                             <MenuItem value={'SEDAN'}>Sedan</MenuItem>
                         </TextField>
                     </Grid>

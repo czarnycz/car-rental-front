@@ -3,7 +3,7 @@ import {Link} from 'react-router-dom';
 
 
 import logo from "../../logo.svg";
-import PeopleAlt from "@material-ui/icons/PeopleAlt";
+import ListAltIcon from "@material-ui/icons/ListAlt";
 import DirectionsCarIcon from "@material-ui/icons/DirectionsCar";
 
 const HEADER_BUTTONS = [
@@ -13,14 +13,14 @@ const HEADER_BUTTONS = [
         icon: (<></>),
     },
     {
-        name: 'Users',
-        href: '/users',
-        icon: (<PeopleAlt fontSize={"small"}/>),
+        name: 'Cars',
+        href: '/selectCar',
+        icon: (<DirectionsCarIcon fontSize={"small"}/>),
     },
     {
         name: 'Reservation',
         href: '/reservations',
-        icon: (<DirectionsCarIcon fontSize={"small"}/>),
+        icon: (<ListAltIcon fontSize={"small"}/>),
     },
     {
         name: 'Home',
