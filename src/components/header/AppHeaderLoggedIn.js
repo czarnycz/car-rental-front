@@ -14,7 +14,7 @@ const HEADER_BUTTONS = [
     },
     {
         name: 'Cars',
-        href: '/selectCar',
+        href: '/cars',
         icon: (<DirectionsCarIcon fontSize={"small"}/>),
     },
     {

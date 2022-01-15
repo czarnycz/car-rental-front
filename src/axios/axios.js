@@ -8,7 +8,7 @@ instance.interceptors.request.use(req => {
     console.log('req: ' + req)
     const token = localStorage.getItem('token');
     if (token) {
-        req.headers = {'Authorization': 'Bearer ' + token};
+        req.headers = {'Authorization': token};
     }
     return req;
 });

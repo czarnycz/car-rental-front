@@ -4,7 +4,7 @@ import CardComponent from "../../CardComponent";
 import {Button, Grid, MenuItem, TextField} from "@material-ui/core";
 import classes from "./CarForm.module.css"
 import DeleteIcon from "@material-ui/icons/Delete";
-import {useParams} from "react-router-dom";
+import {Link, useParams} from "react-router-dom";
 
 
 
@@ -30,9 +30,10 @@ const CarForm = () => {
     }
 
     const handleSubmit = () => {
+        console.log(reservationId)
         console.log("Wysyłamy:" + JSON.stringify(editedCarForm))
 
-        instance.post(`reservations/selectCar/${reservationId}`,editedCarForm)
+        instance.post(`/reservations/selectCar/${reservationId}`,editedCarForm)
             .then((data)=>{
                 console.log("Odpowiedz sukces: " + JSON.stringify(data));
             })
@@ -80,11 +81,13 @@ const CarForm = () => {
                             </Button>
                         </Grid>
                         <Grid item xs={6}>
-                            <Button className={classes.FormStretchField}
-                                    size={'small'} variant="contained"
-                                    onClick={handleSubmit}>
-                                Submit
-                            </Button>
+                            <Link to={`/reservations`}
+                                  className={classes.BackButton}>
+                                <Button className={classes.FormStretchField}
+                                        size={'small'} variant="contained">
+                                    Submit
+                                </Button>
+                            </Link>
                         </Grid>
                     </Grid>
                 </Grid>

@@ -6,11 +6,11 @@ import DeleteIcon from '@material-ui/icons/Delete';
 import {Button, Grid} from "@material-ui/core";
 import {useState} from "react";
 import instance from  "../../../axios/axios";
-import {Link} from "react-router-dom";
+import {Link, useHistory} from "react-router-dom";
 
 const getDateStringFromDateObject = (dateObject) => {
     let ye = new Intl.DateTimeFormat('en', {year: 'numeric'}).format(dateObject);
-    let mo = new Intl.DateTimeFormat('en', {month: 'numeric'}).format(dateObject);
+    let mo = new Intl.DateTimeFormat('en', {month: '2-digit'}).format(dateObject);
     let da = new Intl.DateTimeFormat('en', {day: '2-digit'}).format(dateObject);
 
     return `${ye}-${mo}-${da}`
@@ -25,6 +25,8 @@ const EMPTY_NEW_RESERVATION = {
 }
 
 const ReservationForm = () => {
+    const history = useHistory();
+
 
     const [editedReservation, setEditedReservation] = useState({...EMPTY_NEW_RESERVATION});
     const [startOfReservation, setStartOfReservation] = useState(new Date());
@@ -52,6 +54,8 @@ const ReservationForm = () => {
         instance.post('/reservations',editedReservation)
             .then((data)=>{
                 console.log("Odpowiedz sukces: " + JSON.stringify(data));
+                let reservationId = data.data;
+                history.push(`/reservations/add/selectCar/${reservationId}`)
             })
             .catch((err)=>{
                 console.log("Odpowiedz failed: " + JSON.stringify(err))
@@ -84,13 +88,13 @@ const ReservationForm = () => {
                             </Button>
                         </Grid>
                         <Grid item xs={6}>
-                            <Link to={"/reservations/add/selectCar"} className={classes.ReservationAddButton}>
+
                             <Button className={classes.FormStretchField}
                                     size={'small'} variant="contained"
                                     onClick={handleSubmit}>
                                 Submit
                             </Button>
-                            </Link>
+
                         </Grid>
                     </Grid>
                 </Grid>

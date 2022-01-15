@@ -9,7 +9,7 @@ const ReservationList = () => {
     const [rows, setRows] = useState([]);
 
     const pullRecordsFromDatabaseServer = () => {
-        instance.get("/reservations/")
+        instance.get("/reservations")
             .then((data) => {
 
                 console.log("Otrzymaliśmy sukces odpowiedź!")
@@ -40,30 +40,26 @@ const ReservationList = () => {
                             <TableHead>
                                 <TableRow>
                                     <TableCell>Id</TableCell>
+                                    <TableCell align="right">Reservation Date</TableCell>
                                     <TableCell align="right">Start Date</TableCell>
                                     <TableCell align="right">End Date</TableCell>
-                                    <TableCell align="right">User</TableCell>
-                                    <TableCell align="right">Car</TableCell>
-
-                                    <TableCell align="right">Edit</TableCell>
+                                    <TableCell align="right">Price</TableCell>
+                                    <TableCell align="right">Is Cancelled</TableCell>
                                     <TableCell align="right">Details</TableCell>
                                 </TableRow>
                             </TableHead>
                             <TableBody>
                                 {rows.map((row) => (
                                     <TableRow
-                                        key={row.name}
+                                        key={row.id}
                                         sx={{'&:last-child td, &:last-child th': {border: 0}}}
                                     >
-                                        <TableCell component="th" scope="row">
-                                            {row.id}
-                                        </TableCell>
+                                        <TableCell component="th" scope="row">{row.id}</TableCell>
                                         <TableCell align="right">{row.dateOfReservation}</TableCell>
                                         <TableCell align="right">{row.startOfReservation}</TableCell>
                                         <TableCell align="right">{row.endOfReservation}</TableCell>
                                         <TableCell align="right">{row.price}</TableCell>
                                         <TableCell align="right">{row.cancelled}</TableCell>
-                                        <TableCell align="right">Edit</TableCell>
                                         <TableCell align="right">
                                             <Link to={`/reservations/details/${row.id}`} className={classes.ReservationAddButton}>
                                                 <Button>Details</Button>
