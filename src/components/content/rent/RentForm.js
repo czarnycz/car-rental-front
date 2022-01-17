@@ -34,9 +34,6 @@ const RentForm = () => {
     };
 
 
-    const handleClearForm = () => {
-        setEditedCarForm({...EMPTY_RENT_FORM})
-    }
     const handleDateChangeForm = name => date => {
         const finalDate = getDateStringFromDateObject(date)
         setDateOfRent(date)
@@ -47,7 +44,7 @@ const RentForm = () => {
         console.log(reservationId)
         console.log("Wysyłamy:" + JSON.stringify(editedCarForm))
 
-        instance.post(`/rent/${reservationId}`,editedCarForm)
+        instance.post(`/rents/${reservationId}`,editedCarForm)
             .then((data)=>{
                 console.log("Odpowiedz sukces: " + JSON.stringify(data));
             })
@@ -90,7 +87,7 @@ const RentForm = () => {
                     <Grid item xs={1}/>
                     <Grid container item xs={10}>
                         <Grid item xs={6}>
-                            <Link to={`/reservations`}
+                            <Link to={`/reservations/details/${reservationId}`}
                                   className={classes.BackButton}>
                                 <Button className={classes.FormStretchField}
                                         size={'small'} variant="contained">

@@ -84,7 +84,8 @@ const CarForm = () => {
                             <Link to={`/reservations`}
                                   className={classes.BackButton}>
                                 <Button className={classes.FormStretchField}
-                                        size={'small'} variant="contained">
+                                        size={'small'} variant="contained"
+                                    onClick={handleSubmit}>
                                     Submit
                                 </Button>
                             </Link>

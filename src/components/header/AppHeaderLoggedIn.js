@@ -1,10 +1,11 @@
 import classes from "./AppHeader.module.css";
 import {Link} from 'react-router-dom';
-
+import {connect} from "react-redux";
 
 import logo from "../../logo.svg";
 import ListAltIcon from "@material-ui/icons/ListAlt";
 import DirectionsCarIcon from "@material-ui/icons/DirectionsCar";
+
 
 const HEADER_BUTTONS = [
     {
@@ -29,7 +30,7 @@ const HEADER_BUTTONS = [
     },
 ]
 
-const AppHeaderLoggedIn = () => {
+const AppHeaderLoggedIn = (props) => {
 
     const mapToHeaderButton = (buttonInfo) => {
         return (
@@ -49,9 +50,20 @@ const AppHeaderLoggedIn = () => {
                 {
                     HEADER_BUTTONS.map(mapToHeaderButton)
                 }
+                <div className={classes.UsernameHeaderDiv}>
+                    Logged in as: {props.authenticatedUsername} [{props.authenticatedUserId}] [{props.authenticatedUserAdmin?'A':'U'}]
+                </div>
             </div>
         </header>
     );
 }
+const mapStateToProps = state => {
+        return {
+            authenticatedUsername: state.auth.username,
+            authenticatedUserAdmin: state.auth.admin,
+            authenticatedUserId: state.auth.id
+        };
+    }
+;
 
-export default AppHeaderLoggedIn;
+export default connect(mapStateToProps, null)(AppHeaderLoggedIn);

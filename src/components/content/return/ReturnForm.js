@@ -74,7 +74,7 @@ const ReturnForm = () => {
                     <Grid item xs={1}/>
                     <Grid container item xs={10}>
                         <Grid item xs={6}>
-                        <Link to={`/reservations`}
+                        <Link to={`/reservations/details/${reservationId}`}
                               className={classes.BackButton}>
                             <Button className={classes.FormStretchField}
                                     size={'small'} variant="contained">

@@ -11,6 +11,8 @@ const initialState = {
     token: null,
     username: null,
     error: null,
+    id: null,
+    admin: null,
     loading: false,
     authRedirectPath: '/auth'
 }
@@ -30,11 +32,11 @@ const parseJwt = (token) => {
 };
 
 const authSuccess = (state, action) => {
-    console.log(parseJwt(action.token));
-
     return updateObject(state, {
         token: action.token,
         username: action.username,
+        id: action.id,
+        admin: action.admin,
         error: null,
         loading: false
     });

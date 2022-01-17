@@ -30,10 +30,10 @@ const ContentLoggedIn = () => {
                     <Route path={'/reservations/add'}>
                         <ReservationForm/>
                     </Route>
-                    <Route path={'/rent'}>
+                    <Route path={'/rent/:reservationId'}>
                         <RentForm/>
                     </Route>
-                    <Route path={'/return'}>
+                    <Route path={'/return/:reservationId'}>
                         <ReturnForm/>
                     </Route>
                     <Route path={'/reservations'}>

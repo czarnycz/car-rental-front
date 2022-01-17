@@ -9,6 +9,11 @@ const HEADER_BUTTONS = [
         icon: (<></>),
     },
     {
+        name: 'Register',
+        href: '/register',
+        icon: (<></>),
+    },
+    {
         name: 'Auth',
         href: '/auth',
         icon: (<></>),

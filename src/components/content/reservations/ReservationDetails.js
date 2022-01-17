@@ -4,11 +4,10 @@ import instance from "../../../axios/axios";
 import CardComponent from "../../CardComponent";
 import {Button, Grid} from "@material-ui/core";
 import classes from './ReservationDetails.module.css';
-import ReservationTable from "./ReservationTable";
+import {connect} from "react-redux";
 
-const ReservationDetails = () => {
+const ReservationDetails = (props) => {
     const history = useHistory();
-    const [editedReservation, setEditedReservation] = useState();
     const {reservationId} = useParams();
     const [reservation, setReservation] = useState({});
 
@@ -40,6 +39,57 @@ const ReservationDetails = () => {
     useEffect(() => {
         pullRecords();
     }, []);
+
+    let buttonSelectCar = <Grid item xs={4}>
+        <Link to={`/reservations/add/selectCar/${reservation.id}`}
+              className={classes.ReservationAddButton}>
+            <Button className={classes.FormStretchField}
+                    size={'small'} variant="contained">
+                Manage Car
+            </Button>
+        </Link>
+    </Grid>;
+
+    let buttonRentCar = <Grid item xs={4}>
+
+        <Link to={`/rent/${reservation.id}`}
+              className={classes.ReservationAddButton}>
+            <Button className={classes.FormStretchField}
+                    size={'small'} variant="contained">
+                Rent Car
+            </Button>
+        </Link>
+    </Grid>;
+
+    let buttonReturnCar = <Grid item xs={4}>
+
+        <Link to={`/return/${reservation.id}`}
+              className={classes.ReservationAddButton}>
+            <Button className={classes.FormStretchField}
+                    size={'small'} variant="contained">
+                Return Car
+            </Button>
+        </Link>
+    </Grid>;
+
+    let buttonCancel = <Grid item xs={4}>
+        <Button className={classes.FormStretchField}
+                size={'small'} variant="contained"
+                onClick={handleCancel}>
+            Cancel reservation
+        </Button>
+    </Grid>;
+
+    let buttonBack = <Grid item xs={4}>
+        <Link to={`/reservations/details`}
+              className={classes.ReservationAddButton}>
+            <Button className={classes.FormStretchField}
+                    size={'small'} variant="contained">
+                Back
+            </Button>
+        </Link>
+    </Grid>;
+
 
     return (
         <div>
@@ -99,47 +149,25 @@ const ReservationDetails = () => {
                     <Grid item xs={9}>
                         {reservation.cancelled ? "Reservation is cancelled" : "No"}
                     </Grid>
-                    {reservation.cancelled == false ?
-                        <>
-                            <Grid item xs={3}>
-                            <Link to={`/reservations/add/selectCar/${reservation.id}`}
-                                  className={classes.ReservationAddButton}>
-                                <Button className={classes.FormStretchField}
-                                        size={'small'} variant="contained">
-                                    Manage Car
-                                </Button>
-                            </Link>
-                        </Grid>
-                            <Grid item xs={3}>
-                                <Link to={`/rent/${reservation.id}`}
-                                      className={classes.ReservationAddButton}>
-                                    <Button className={classes.FormStretchField}
-                                            size={'small'} variant="contained">
-                                        Rent Car
-                                    </Button>
-                                </Link>
-                            </Grid>
-                            <Grid item xs={3}>
-                                <Link to={`/return/${reservation.id}`}
-                                      className={classes.ReservationAddButton}>
-                                    <Button className={classes.FormStretchField}
-                                            size={'small'} variant="contained">
-                                        Return Car
-                                    </Button>
-                                </Link>
-                            </Grid>
-                            <Grid item xs={3}>
-                                <Button className={classes.FormStretchField}
-                                        size={'small'} variant="contained"
-                                        onClick={handleCancel}>
-                                    Cancel reservation
-                                </Button>
-                            </Grid>
-                        </> :
-                        <></>}
+                    {!props.authenticatedUserAdmin? buttonSelectCar : <></>}
+                    {/*TODO: dopisać czy jest samochod wynajety */}
+                    {props.authenticatedUserAdmin? buttonRentCar : <></>}
+                    {/*TODO: dopisać czy jest samochod zwrocony*/}
+                    {props.authenticatedUserAdmin? buttonReturnCar : <></>}
+                    {!props.authenticatedUserAdmin? buttonCancel : <></>}
+                    {buttonBack}
+
                 </Grid>
             </CardComponent>
         </div>
     )
 }
-export default ReservationDetails;
+const mapStateToProps = state => {
+        return {
+            authenticatedUsername: state.auth.username,
+            authenticatedUserAdmin: state.auth.admin,
+            authenticatedUserId: state.auth.id
+        };
+    }
+;
+export default connect(mapStateToProps, null)(ReservationDetails);

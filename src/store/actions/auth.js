@@ -21,7 +21,21 @@ export const auth = (username, password) => {
                 localStorage.setItem('token', response.headers.authorization);
                 localStorage.setItem('expirationDate', response.headers.expiresAt);
                 localStorage.setItem('username', username);
-                dispatch(authSuccess(response.headers.authorization, username));
+
+                instance.get("/user")
+                    .then(response => {
+                        console.log('Retrieving rest of user data successful...')
+                        console.log(response)
+                        localStorage.setItem('id', response.data.id);
+                        localStorage.setItem('username', response.data.username);
+                        localStorage.setItem('admin', response.data.admin);
+                        dispatch(authSuccess(response.headers.authorization, username, response.data.id, response.data.admin));
+                    })
+                    .catch(err => {
+                        console.log('Retrieving rest of user data ERROR!')
+                    })
+
+                dispatch(authSuccess(response.headers.authorization, username, null, null));
             })
             .catch(err => {
                 console.log('Error: ')
@@ -32,11 +46,14 @@ export const auth = (username, password) => {
     }
 }
 
-const authSuccess = (token, username) => {
+
+const authSuccess = (token, username, id, admin) => {
     return {
         type: actionTypes.AUTH_SUCCESS,
         token: token,
-        username: username
+        username: username,
+        id: id,
+        admin: admin
     }
 }
 
@@ -50,6 +67,8 @@ const authFail = (error) => {
 export const logout = () => {
     localStorage.removeItem('token');
     localStorage.removeItem('username');
+    localStorage.removeItem('id');
+    localStorage.removeItem('admin');
     return {
         type: actionTypes.AUTH_LOGOUT
     }
