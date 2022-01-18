@@ -64,10 +64,10 @@ const RentForm = () => {
                         </DatePicker>
                     </Grid>
                     <Grid item xs={12}>
-                        <TextField value={editedCarForm.additionalPayment}
-                                   onChange={handleChangeForm("car")}
+                        <TextField value={editedCarForm.comments}
+                                   onChange={handleChangeForm("comment")}
                                    className={classes.FormStretchField}
-                                   label='Car' size={'small'} variant="filled">
+                                   label='Comment' size={'small'} variant="filled">
                         </TextField>
                     </Grid>
                     <Grid item xs={12}>
@@ -75,13 +75,6 @@ const RentForm = () => {
                                    onChange={handleChangeForm("worker")}
                                    className={classes.FormStretchField}
                                    label='Worker' size={'small'} variant="filled">
-                        </TextField>
-                    </Grid>
-                    <Grid item xs={12}>
-                        <TextField value={editedCarForm.comments}
-                                   onChange={handleChangeForm("comments")}
-                                   className={classes.FormStretchField}
-                                   label='Comments' size={'small'} variant="filled">
                         </TextField>
                     </Grid>
                     <Grid item xs={1}/>
