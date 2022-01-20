@@ -10,9 +10,6 @@ const CardComponent = (props) => {
             <div className={classes.CardContent}>
                 {props.children}
             </div>
-            <div className={classes.CardPicture}>
-                <img src={car_city}  alt="car_city"/>
-            </div>
         </div>
     )
 }

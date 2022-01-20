@@ -21,5 +21,8 @@
 }
 
 .CardPicture{
-    height: 12px;
+    height: 650px;
+    display: flex;
+    flex-direction: column;
+    margin: 4px;
 }
