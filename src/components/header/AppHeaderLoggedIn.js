@@ -3,6 +3,7 @@ import {Link} from 'react-router-dom';
 import {connect} from "react-redux";
 
 import car_rental from '../../car_rental.png';
+import car_city from '../../car_city.png';
 import ListAltIcon from "@material-ui/icons/ListAlt";
 import DirectionsCarIcon from "@material-ui/icons/DirectionsCar";
 

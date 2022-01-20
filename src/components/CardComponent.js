@@ -1,4 +1,5 @@
 import classes from './CardComponent.module.css';
+import car_city from "../car_city.png";
 
 const CardComponent = (props) => {
     return (
@@ -8,6 +9,9 @@ const CardComponent = (props) => {
             </div>
             <div className={classes.CardContent}>
                 {props.children}
+            </div>
+            <div className={classes.CardPicture}>
+                <img src={car_city}  alt="car_city"/>
             </div>
         </div>
     )
