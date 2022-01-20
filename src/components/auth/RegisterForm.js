@@ -7,8 +7,12 @@ import instance from "../../axios/axios";
 import {useHistory} from "react-router-dom";
 
 const EMPTY_NEW_USER = {
+    'firstName':'',
+    'lastName':'',
     'username': '',
     'password': '',
+    'email':'',
+    'address': '',
     'admin': false
 }
 
@@ -43,6 +47,18 @@ const RegisterForm = () => {
             <CardComponent title={'Registration Form'}>
                 <Grid container className={classes.FormContainer}>
                     <Grid item xs={12}>
+                        <TextField value={registeredUser.firstName}
+                                   onChange={handleChangeForm("firstName")}
+                                   className={classes.FormStretchField}
+                                   label={'First Name'} size={'small'} variant="filled"/>
+                    </Grid>
+                    <Grid item xs={12}>
+                        <TextField value={registeredUser.lastName}
+                                   onChange={handleChangeForm("lastName")}
+                                   className={classes.FormStretchField}
+                                   label={'Last Name'} size={'small'} variant="filled"/>
+                    </Grid>
+                    <Grid item xs={12}>
                         <TextField value={registeredUser.username}
                                    onChange={handleChangeForm("username")}
                                    className={classes.FormStretchField}
@@ -54,6 +70,18 @@ const RegisterForm = () => {
                                    className={classes.FormStretchField}
                                    type={"password"}
                                    label={'Password'} size={'small'} variant="filled"/>
+                    </Grid>
+                    <Grid item xs={12}>
+                        <TextField value={registeredUser.email}
+                                   onChange={handleChangeForm("email")}
+                                   className={classes.FormStretchField}
+                                   label={'Email'} size={'small'} variant="filled"/>
+                    </Grid>
+                    <Grid item xs={12}>
+                        <TextField value={registeredUser.address}
+                                   onChange={handleChangeForm("address")}
+                                   className={classes.FormStretchField}
+                                   label={'Address'} size={'small'} variant="filled"/>
                     </Grid>
                     <Grid item xs={12}>
                         <TextField value={registeredUser.admin}

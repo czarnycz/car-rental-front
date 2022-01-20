@@ -1,4 +1,4 @@
-import {Link, useParams} from "react-router-dom";
+import {Link, useHistory, useParams} from "react-router-dom";
 import {useState} from "react";
 import instance from "../../../axios/axios";
 import CardComponent from "../../CardComponent";
@@ -16,13 +16,14 @@ const getDateStringFromDateObject = (dateObject) => {
 }
 
 const EMPTY_RENT_FORM = {
-    'dateOfReturn': getDateStringFromDateObject(new Date),
+    'dateOfRent': getDateStringFromDateObject(new Date),
     'comments': null,
-    'worker': null,
+
 
 }
 
 const RentForm = () => {
+    const history = useHistory();
     const [dateOfRent, setDateOfRent] = useState(new Date());
     const {reservationId} = useParams();
 
@@ -47,6 +48,7 @@ const RentForm = () => {
         instance.post(`/rents/${reservationId}`,editedCarForm)
             .then((data)=>{
                 console.log("Odpowiedz sukces: " + JSON.stringify(data));
+                history.push(`/reservations/details/${reservationId}`);
             })
             .catch((err)=>{
                 console.log("Odpowiedz failed: " + JSON.stringify(err))
@@ -65,16 +67,9 @@ const RentForm = () => {
                     </Grid>
                     <Grid item xs={12}>
                         <TextField value={editedCarForm.comments}
-                                   onChange={handleChangeForm("comment")}
+                                   onChange={handleChangeForm("comments")}
                                    className={classes.FormStretchField}
                                    label='Comment' size={'small'} variant="filled">
-                        </TextField>
-                    </Grid>
-                    <Grid item xs={12}>
-                        <TextField value={editedCarForm.worker}
-                                   onChange={handleChangeForm("worker")}
-                                   className={classes.FormStretchField}
-                                   label='Worker' size={'small'} variant="filled">
                         </TextField>
                     </Grid>
                     <Grid item xs={1}/>

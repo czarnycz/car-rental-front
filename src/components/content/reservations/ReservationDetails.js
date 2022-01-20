@@ -162,9 +162,7 @@ const ReservationDetails = (props) => {
                         {reservation.returned ? "Car from this reservation has been returned" : "No"}
                     </Grid>
                     {!props.authenticatedUserAdmin && !reservation.rented? buttonSelectCar : <></>}
-                    {/*TODO: dopisać czy jest samochod wynajety */}
                     {props.authenticatedUserAdmin   && !reservation.rented? buttonRentCar : <></>}
-                    {/*TODO: dopisać czy jest samochod zwrocony*/}
                     {props.authenticatedUserAdmin && reservation.rented && !reservation.returned? buttonReturnCar : <></>}
                     {!props.authenticatedUserAdmin && !reservation.rented? buttonCancel : <></>}
                     {buttonBack}

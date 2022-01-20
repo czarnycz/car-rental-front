@@ -1,14 +1,13 @@
 
 import instance from "../../../axios/axios";
 import classes from "./CarList.module.css";
-import {Button, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow} from "@material-ui/core";
+import {Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow} from "@material-ui/core";
 import CardComponent from "../../CardComponent";
 import {useEffect, useState} from "react";
-import {Link} from "react-router-dom";
 
 
 
-const CarList = (props) => {
+const CarList = () => {
 
 
     const [rows, setRows] = useState([]);
@@ -27,16 +26,6 @@ const CarList = (props) => {
             });
     }
 
-    const handleRemoveRecord = (row) => {
-        instance.delete("/cars" + row.id)
-            .then((data) => {
-                console.log("Otrzymaliśmy sukces odpowiedź!");
-                props.refreshData();
-            })
-            .catch((error) => {
-                console.log("Otrzymaliśmy odpowiedź o błędzie!");
-            });
-    }
     useEffect(() => {
         pullRecordsFromDatabaseServer();
     }, [])
@@ -54,7 +43,7 @@ const CarList = (props) => {
                             <TableCell align="right">Model</TableCell>
                             <TableCell align="right">Mark</TableCell>
                             <TableCell align="right">Type</TableCell>
-                            <TableCell align="right">Delete</TableCell>
+
 
                         </TableRow>
                     </TableHead>
@@ -67,11 +56,6 @@ const CarList = (props) => {
                                 <TableCell align="right">{row.model}</TableCell>
                                 <TableCell align="right">{row.mark}</TableCell>
                                 <TableCell align="right">{row.type}</TableCell>
-                                <TableCell align="right">
-                                    {
-                                        props.hideDelete ? (<></>) : <Button onClick={() => {handleRemoveRecord(row)}}>Delete</Button>
-                                    }
-                                </TableCell>
 
 
                             </TableRow>)
