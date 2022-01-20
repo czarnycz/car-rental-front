@@ -1,6 +1,6 @@
 import classes from "./AppHeader.module.css";
 import {Link} from 'react-router-dom';
-import logo from "../../logo.svg";
+import car_rental from '../../car_rental.png';
 
 const HEADER_BUTTONS = [
     {
@@ -9,12 +9,12 @@ const HEADER_BUTTONS = [
         icon: (<></>),
     },
     {
-        name: 'Register',
+        name: 'Join',
         href: '/register',
         icon: (<></>),
     },
     {
-        name: 'Auth',
+        name: 'Sign In',
         href: '/auth',
         icon: (<></>),
     },
@@ -34,7 +34,7 @@ const AppHeaderLoggedOut = () => {
     return (
         <header className={classes.AppHeader}>
             <div className={classes.HeaderLeft}>
-                <img src={logo} className={classes.AppLogo} alt="logo"/>
+                <img src={car_rental} className={classes.AppLogo} alt="car_rental"/>
             </div>
             <div className={classes.HeaderRight}>
                 {

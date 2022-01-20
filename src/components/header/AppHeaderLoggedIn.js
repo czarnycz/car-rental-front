@@ -2,7 +2,7 @@ import classes from "./AppHeader.module.css";
 import {Link} from 'react-router-dom';
 import {connect} from "react-redux";
 
-import logo from "../../logo.svg";
+import car_rental from '../../car_rental.png';
 import ListAltIcon from "@material-ui/icons/ListAlt";
 import DirectionsCarIcon from "@material-ui/icons/DirectionsCar";
 
@@ -44,7 +44,7 @@ const AppHeaderLoggedIn = (props) => {
     return (
         <header className={classes.AppHeader}>
             <div className={classes.HeaderLeft}>
-                <img src={logo} className={classes.AppLogo} alt="logo"/>
+                <img src={car_rental} className={classes.AppLogo} alt="car_rental"/>
             </div>
             <div className={classes.HeaderRight}>
                 {

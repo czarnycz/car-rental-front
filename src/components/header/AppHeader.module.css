@@ -1,6 +1,8 @@
 .AppLogo {
     height: 48px;
     pointer-events: none;
+    margin: auto;
+
 }
 
 @media (prefers-reduced-motion: no-preference) {
@@ -18,14 +20,7 @@
     flex-direction: row;
 }
 
-@keyframes AppLogoSpin {
-    from {
-        transform: rotate(0deg);
-    }
-    to {
-        transform: rotate(360deg);
-    }
-}
+
 
 .HeaderLeft{
     flex: 1;
