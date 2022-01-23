@@ -13,7 +13,7 @@ Frontend depends on the backend and backend depends on the frontend.
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
-Application require adding the devTools extension in your browser.
+Application require adding the devTools extension in your browser and install Node.js on your local computer.
 
 ## Available Scripts
 
