@@ -67,12 +67,18 @@ const ReservationForm = () => {
         <div>
             <CardComponent title={'Reservation Form'}>
                 <Grid container className={classes.FormContainer}>
-                    <Grid item xs={12}>
+                    <Grid item xs={6}>
+                        Date Start of reservation:
+                    </Grid>
+                    <Grid item xs={6}>
                         <DatePicker selected={startOfReservation}
                                     onChange={handleDateChangeForm("startOfReservation")}>
                         </DatePicker>
                     </Grid>
-                    <Grid item xs={12}>
+                    <Grid item xs={6}>
+                        Date End of reservation:
+                    </Grid>
+                    <Grid item xs={6}>
                         <DatePicker selected={endOfReservation}
                                     onChange={handleDateChangeForm1("endOfReservation")}>
                         </DatePicker>
