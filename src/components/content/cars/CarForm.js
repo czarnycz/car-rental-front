@@ -3,15 +3,15 @@ import instance from  "../../../axios/axios";
 import CardComponent from "../../CardComponent";
 import {Button, Grid, MenuItem, TextField} from "@material-ui/core";
 import classes from "./CarForm.module.css"
-import DeleteIcon from "@material-ui/icons/Delete";
+
 import {Link, useParams} from "react-router-dom";
 
 
 
 const EMPTY_CAR_FORM = {
     'id': null,
-    'mark': null,
-    'model': null,
+    'mark': 'AUDI',
+    'model': 'Q5',
     'type': 'SUV',
 }
 
@@ -25,9 +25,6 @@ const CarForm = () => {
     };
 
 
-    const handleClearForm = () => {
-        setEditedCarForm({...EMPTY_CAR_FORM})
-    }
 
     const handleSubmit = () => {
         console.log(reservationId)
@@ -48,37 +45,49 @@ const CarForm = () => {
             <CardComponent title={'Car Form'}>
                 <Grid container className={classes.FormContainer}>
                     <Grid item xs={12}>
-                        <TextField value={editedCarForm.mark}
-                                   onChange={handleChangeForm("mark")}
-                                   className={classes.FormStretchField}
-                                   label={'Mark'} size={'small'} variant="filled"/>
-                    </Grid>
-                    <Grid item xs={12}>
-                        <TextField value={editedCarForm.model}
-                                   onChange={handleChangeForm("model")}
-                                   className={classes.FormStretchField}
-                                   label={'Model'} size={'small'} variant="filled"/>
-                    </Grid>
-                    <Grid item xs={12}>
                         <TextField value={editedCarForm.type}
                                    onChange={handleChangeForm("type")}
                                    className={classes.FormStretchField}
                                    select
                                    label='Car Body/Type' size={'small'} variant="filled">
-                            <MenuItem value={'SUV'}>SUV</MenuItem>
-                            <MenuItem value={'CABRIOLET'}>Cabriolet</MenuItem>
-                            <MenuItem value={'SEDAN'}>Sedan</MenuItem>
+                            <MenuItem value={'SUV'}>SUV - 350/day</MenuItem>
+                            <MenuItem value={'CABRIOLET'}>Cabriolet - 320/day</MenuItem>
+                            <MenuItem value={'SEDAN'}>Sedan - 200/day</MenuItem>
+                        </TextField>
+                    </Grid>
+                    <Grid item xs={12}>
+                        <TextField value={editedCarForm.mark}
+                                   onChange={handleChangeForm("mark")}
+                                   className={classes.FormStretchField}
+                                   select
+                                   label='Mark' size={'small'} variant="filled">
+                            <MenuItem value={'AUDI'}>AUDI</MenuItem>
+                            <MenuItem value={'BMW'}>BMW</MenuItem>
+                        </TextField>
+                    </Grid>
+                    <Grid item xs={12}>
+                        <TextField value={editedCarForm.model}
+                                   onChange={handleChangeForm("model")}
+                                   className={classes.FormStretchField}
+                                   select
+                                   label='Model' size={'small'} variant="filled">
+                            <MenuItem value={'A5'}>A5</MenuItem>
+                            <MenuItem value={'E36'}>E36</MenuItem>
+                            <MenuItem value={'X5'}>X5</MenuItem>
+                            <MenuItem value={'RS6'}>RS6</MenuItem>
+                            <MenuItem value={'Q5'}>Q5</MenuItem>
                         </TextField>
                     </Grid>
                     <Grid item xs={1}/>
                     <Grid container item xs={10}>
                         <Grid item xs={6}>
-                            <Button className={classes.FormStretchField}
-                                    size={'small'} variant="contained"
-                                    startIcon={<DeleteIcon/>}
-                                    onClick={handleClearForm}>
-                                Reset
-                            </Button>
+                            <Link to={`/reservations/add`}
+                                  className={classes.BackButton}>
+                                <Button className={classes.FormStretchField}
+                                        size={'small'} variant="contained">
+                                    Back
+                                </Button>
+                            </Link>
                         </Grid>
                         <Grid item xs={6}>
                             <Link to={`/reservations`}

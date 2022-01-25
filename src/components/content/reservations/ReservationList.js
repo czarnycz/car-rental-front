@@ -40,7 +40,6 @@ const ReservationList = () => {
                             <TableHead>
                                 <TableRow>
                                     <TableCell>Id</TableCell>
-                                    <TableCell align="right">Reservation Date</TableCell>
                                     <TableCell align="right">Start Date</TableCell>
                                     <TableCell align="right">End Date</TableCell>
                                     <TableCell align="right">Price</TableCell>
@@ -55,11 +54,10 @@ const ReservationList = () => {
                                         sx={{'&:last-child td, &:last-child th': {border: 0}}}
                                     >
                                         <TableCell component="th" scope="row">{row.id}</TableCell>
-                                        <TableCell align="right">{row.dateOfReservation}</TableCell>
                                         <TableCell align="right">{row.startOfReservation}</TableCell>
                                         <TableCell align="right">{row.endOfReservation}</TableCell>
                                         <TableCell align="right">{row.price}</TableCell>
-                                        <TableCell align="right">{row.cancelled}</TableCell>
+                                        <TableCell align="right">{row.cancelled ? "Reservation is cancelled" : "No"}</TableCell>
                                         <TableCell align="right">
                                             <Link to={`/reservations/details/${row.id}`} className={classes.ReservationAddButton}>
                                                 <Button>Details</Button>

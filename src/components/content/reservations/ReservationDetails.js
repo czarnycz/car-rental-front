@@ -161,10 +161,10 @@ const ReservationDetails = (props) => {
                     <Grid item xs={9}>
                         {reservation.returned ? "Car from this reservation has been returned" : "No"}
                     </Grid>
-                    {!props.authenticatedUserAdmin && !reservation.rented? buttonSelectCar : <></>}
-                    {props.authenticatedUserAdmin   && !reservation.rented? buttonRentCar : <></>}
-                    {props.authenticatedUserAdmin && reservation.rented && !reservation.returned? buttonReturnCar : <></>}
-                    {!props.authenticatedUserAdmin && !reservation.rented? buttonCancel : <></>}
+                    {!props.authenticatedUserAdmin && !reservation.rented && !reservation.cancelled? buttonSelectCar : <></>}
+                    {props.authenticatedUserAdmin   && !reservation.rented && !reservation.cancelled? buttonRentCar : <></>}
+                    {props.authenticatedUserAdmin && reservation.rented && !reservation.returned && !reservation.cancelled? buttonReturnCar : <></>}
+                    {!props.authenticatedUserAdmin && !reservation.rented && !reservation.cancelled? buttonCancel : <></>}
                     {buttonBack}
 
                 </Grid>
